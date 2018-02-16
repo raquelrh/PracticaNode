@@ -1,0 +1,22 @@
+{
+  "name": "practicanode",
+  "version": "1.0.0",
+  "description": "Práctica de Node para el curso de experto de FullStack",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raquelrh/PracticaNode.git"
+  },
+  "author": "Óscar Pérez Riaño, Héctor Rodríguez Iglesias y Raquel Rodríguez Hernández",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/raquelrh/PracticaNode/issues"
+  },
+  "homepage": "https://github.com/raquelrh/PracticaNode#readme",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}
