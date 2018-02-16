@@ -1,4 +1,4 @@
-# PracticaNode
+# Práctica Node
 
 Práctica desarrollada para el Curso de Experto en Full-stack de la Universidad de Salamanca
 
