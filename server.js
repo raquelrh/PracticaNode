@@ -19,20 +19,9 @@ const app = express();
 app.set('child', child);
 //Le indicamos que parsee el json
 app.use(bodyParser.json()); //Usar middleware. Para manejar la petición de entrada.
-app.use('/juega', router);
-
-child.on('message', (msg) => {
-  console.log(`${msg.mensaje}`);
-  setTimeout(() => {
-    child.send({
-      'mensaje': 'Ping'
-    });
-  }, 1000);
-});
-
-child.send({
-  'mensaje': 'Ping'
-});
+app.use('/calculadora', router);
 
 //Lanzamos el servidor
 app.listen(port);
+
+//npm start
