@@ -24,9 +24,13 @@ process.on('message', (msg) => {
         result = Number(num1) * Number(num2);
     } else if (operator === 'DIVI') {
         result = Number(num1) / Number(num2);
+    } else {
+       result = "Operación desconocida";     
+       //process.exit(-1);
     }
 
     console.log(`Resultado = ${result}`);
+    console.log('Hijo se desconecta');
     // process.send(result);
-     
+    process.disconnect();
  });
