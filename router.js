@@ -4,9 +4,26 @@ const express = require('express');
 const router = express.Router();
 const { showResult } = require('./model.js');
 
-router.use(function timeLog (req, res, next) {
-    console.log('Hora:' , Date.now());
+
+function logger (req, res, next) {
+    console.log(Date.now(), req.method, req.url);
     next();
+}
+
+router.use(logger);
+
+router.get('/', (req, res) => {
+    let data = {
+        routes: {
+            '/padre': {
+                methods: ['GET']
+            },
+            '/hijo': {
+                methods: ['POST']
+            }
+        }
+    };
+    res.json(data);
 });
 
 //Ejemplo: GET http://localhost:8000/calculadora/padre
@@ -35,7 +52,16 @@ router.post('/hijo', function(req, res) {
     let global = num1 + ' ' + operation + ' '+ num2;
 
     let result = req.app.get('child').send(global); 
-    showResult();  //Aquí debería manejar el resultado??
+
+    if(result) {
+        res.status(200);
+        result = "Operación finalizada con éxito";
+    } else {
+        res.status(500); //Cambiar código de error
+        result = "Operación finalizada con ERROR";
+    }
+
+    // showResult();  //Aquí debería manejar el resultado??
     res.json(result);
  });
 
