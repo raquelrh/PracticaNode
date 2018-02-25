@@ -21,6 +21,12 @@ app.set('child', child);
 app.use(bodyParser.json()); //Usar middleware. Para manejar la petición de entrada.
 app.use('/calculadora', router);
 
+//Maneja error de cualquier ruta no definida
+app.use("*",function(req,res){
+    res.status(404).send('Error 404. La ruta no existe');
+});
+
+
 //Lanzamos el servidor
 app.listen(port);
 

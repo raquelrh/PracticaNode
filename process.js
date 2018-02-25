@@ -1,36 +1,45 @@
 'use strict';
 
-const { showResult } = require('./model.js');
-
-
+let result = 0 ;
 
 //comunicación entre el padre y el evento del hijo. Zona de exclusion mutua
 process.on('message', (msg) => {
-    console.log(`Hijo recibe la cadena: ${msg}`);
- 
-    let result;
-    let arr = msg.split(" ");
 
-    // console.log(arr);
-    let num1 = arr[0];
-    let operator = arr[1];
-    let num2 = arr[2];
-    
-    if (operator === 'SUMA') {
-        result = Number(num1) + Number(num2);
-    } else if (operator === 'RESTA') {
-        result = Number(num1) - Number(num2);
-    } else if (operator === 'MULTI') {
-        result = Number(num1) * Number(num2);
-    } else if (operator === 'DIVI') {
-        result = Number(num1) / Number(num2);
+    console.log(`Hijo recibe la operación: ${msg.oper}`);
+
+    if(msg.oper != '' && msg.oper != undefined) {
+
+        let num1 =  msg.num1;
+        let operator =  msg.oper;
+        let num2 =  msg.num2;
+
+        //Se realiza la operación indicada
+        if (operator === '+') {
+            result = Number(num1) + Number(num2);
+        } else if (operator === '-') {
+            result = Number(num1) - Number(num2);
+        } else if (operator === '*') {
+            result = Number(num1) * Number(num2);
+        } else if (operator === '/') {
+            result = Number(num1) / Number(num2);
+        } else {
+            msg.result = "Fallo";
+        }       
     } else {
-       result = "Operación desconocida";     
-       //process.exit(-1);
+        msg.result = "Fallo";
     }
+   
+    if(msg.result != "Fallo") {
+        msg.result = result;    
+    }   
 
-    console.log(`Resultado = ${result}`);
-    console.log('Hijo se desconecta');
-    // process.send(result);
-    process.disconnect();
+    console.log(`Resultado en HIJO = ${result}`);
+    
+    process.send(msg);
+    //process.exit(result);
+    console.log('Hijo envia resultado');
+    //process.disconnect();
  });
+
+
+  
