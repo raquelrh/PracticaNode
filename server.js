@@ -3,7 +3,7 @@
 //Cargamos el módulo
 const express = require('express');
 const bodyParser = require('body-parser');
-const {fork} = require('child_process');
+const { fork } = require('child_process');
 
 const port = 8000; //process.env.PORT;
 
@@ -14,7 +14,7 @@ const childUrl = 'process.js';
 const child = fork(childUrl);
 
 //creamos el módulo instánciandolo
-const app = express(); 
+const app = express();
 
 app.set('child', child);
 //Le indicamos que parsee el json
@@ -22,8 +22,8 @@ app.use(bodyParser.json()); //Usar middleware. Para manejar la petición de entr
 app.use('/calculadora', router);
 
 //Maneja error de cualquier ruta no definida
-app.use("*",function(req,res){
-    res.status(404).send('Error 404. La ruta no existe');
+app.use("*", function(req, res) {
+  res.status(404).send('Error 404. La ruta no existe');
 });
 
 
