@@ -1,5 +1,7 @@
 # Práctica Node
 
+Desarrollo de un servidor HTTP en Node.js junto con Express que lanza un proceso y se comunica con él.
+
 Práctica desarrollada para el Curso de Experto en Full-stack de la Universidad de Salamanca
 
 
