@@ -37,20 +37,7 @@ router.get('/padre', (req, res) => {
   }
 });
 
-// router.get('/padre/:oper/:num1/:num2', function(req, res) {
-//     res.send('La operación que vas a realizar desde el padre es una ' + req.params.oper);
-
-//     let operation = req.params.oper;
-//     let num1 = req.params.num1;
-//     let num2 = req.params.num2;
-//     let global = num1 + ' ' + operation.toUpperCase() + ' '+ num2;
-
-//     let result = req.app.get('child').send(global);
-
-//     res.send('El resultado es = ' + req.params.oper);
-// });
-
-//Ejemplo: GET http://localhost:8000/calculadora/padre/hijo
+//Ejemplo: GET Cpadre/hijo
 router.get('/padre/hijo', (req, res) => {
   if (Object.keys(req.query).length !== 0) {
     return res.sendStatus(400);
