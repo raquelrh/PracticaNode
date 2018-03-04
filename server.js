@@ -5,12 +5,11 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const { fork } = require('child_process');
 
-const port = 8000; //process.env.PORT;
+const port = 8000;
 
 //Cargamos el router
 const router = require('./router.js');
 const childUrl = 'process.js';
-
 const child = fork(childUrl);
 
 //creamos el módulo instánciandolo
@@ -26,8 +25,5 @@ app.use("*", function(req, res) {
   res.status(404).send('Error 404. La ruta no existe');
 });
 
-
 //Lanzamos el servidor
 app.listen(port);
-
-//npm start

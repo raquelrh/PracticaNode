@@ -54,7 +54,7 @@ router.get('/padre/hijo', (req, res) => {
      "num2": "20",
      "result": "0"
  } */
-router.post('/padre/hijo', function(req, res) {
+router.post('/padre/hijo', function (req, res) {
 
   let proccesChild = req.app.get('child');
   let data = req.body;
@@ -65,15 +65,12 @@ router.post('/padre/hijo', function(req, res) {
     //Estado del hijo con resultado de la operación
     console.log("En el padre el resultado = " + msg.result);
     if (msg.result == 'Fallo') {
-      //res.json("Estado:" + res.statusCode);
       res.status(500).json("{ resultado: " + msg.result + " }");
     } else {
       res.status(200).json("{ resultado: " + msg.result + " }");
     }
-    //res.json("{ estado:" + res.statusCode + ", resultado: " + msg.result + " }");
   });
 });
-
 
 //Exportamos el módulo
 module.exports = router;
